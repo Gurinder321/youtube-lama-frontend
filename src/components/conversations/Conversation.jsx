@@ -6,22 +6,24 @@ export default function Conversation({ conversation, currentUser }) {
   const [user, setUser] = useState(null);
   const PF = 'https://localhost:3000/assets/';
 
-  // useEffect(() => {
-  //   const friendId = conversation.members.find((m) => m !== currentUser._id);
-  //   console.log(friendId);
+  useEffect(() => {
+    const friendId = conversation.members.find((m) => m !== currentUser._id);
+    console.log('friend id', friendId);
 
-  //   const getUser = async () => {
-  //     try {
-  //       const res = await axios('/users?userId=' + friendId);
-  //       setUser(res.data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   getUser();
-  // }, [currentUser, conversation]);
+    const getUser = async () => {
+      try {
+        const res = await axios('/users?userId=' + friendId);
+        console.log(res);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getUser();
+  }, [currentUser, conversation]);
 
-  const friendId = conversation.members.find((m) => m !== currentUser._id);
+  console.log('current user', currentUser);
+
+  // const friendId = conversation.members.find((m) => m !== currentUser._id);
   console.log('current user', currentUser);
 
   return (

@@ -9,7 +9,7 @@ import { AuthContext } from '../../context/AuthContext';
 export default function Profile({ user }) {
   // const { user } = useContext(AuthContext);
 
-  console.log(user && 'User was found');
+  console.log(user);
   return (
     <>
       <Topbar />

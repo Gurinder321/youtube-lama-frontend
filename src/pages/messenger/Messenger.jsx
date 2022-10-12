@@ -9,33 +9,34 @@ import axios from 'axios';
 
 const Messenger = () => {
   const [conversations, setConversations] = useState([]);
-  const [currentChat, setCurrentChat] = useState(null);
-  const [messages, setMessages] = useState([]);
+  // const [currentChat, setCurrentChat] = useState(null);
+  // const [messages, setMessages] = useState([]);
   const { user } = useContext(AuthContext);
-
+  console.log(user);
   useEffect(() => {
     const getConversations = async () => {
       try {
         const res = await axios.get('/conversations/' + user._id);
-        getConversations(res.data);
-      } catch (error) {
-        console.log(error);
+        setConversations(res.data);
+        console.log(res);
+      } catch (err) {
+        console.log(err);
       }
     };
     getConversations();
   }, [user._id]);
 
-  useEffect(() => {
-    const getMessages = async () => {
-      try {
-        const res = await axios.get('/messages/' + currentChat?._id);
-        setMessages(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getMessages();
-  }, [currentChat]);
+  // useEffect(() => {
+  //   const getMessages = async () => {
+  //     try {
+  //       const res = await axios.get('/messages/' + currentChat?._id);
+  //       setMessages(res.data);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   getMessages();
+  // }, [currentChat]);
 
   return (
     <>
@@ -45,12 +46,9 @@ const Messenger = () => {
           <div className="chatMenuWrapper">
             <input placeholder="Search for friends" className="chatMenuInput" />
 
-            {/* {conversations.map((c) => (
-              <div onClick={() => setCurrentChat(c)}>
-                <Conversation conversation={c} currentUser={user} />
-              </div>
-            ))} */}
-            {/* <Conversation conversation={conversations[0]} currentUser={user} /> */}
+            {conversations.map((c) => (
+              <Conversation conversation={c} />
+            ))}
           </div>
         </div>
         <div className="chatBox">

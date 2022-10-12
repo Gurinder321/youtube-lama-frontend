@@ -8,43 +8,41 @@ import { AuthContext } from '../../context/AuthContext';
 import { FaBeer } from 'react-icons/fa';
 
 export default function Rightbar({ user }) {
-  console.log(user && user._id);
-  console.log(user && user);
   const PF = `https://localhost:3000/assets/`;
   const [friends, setFriends] = useState([]);
-  const { user: currentUser, dispatch } = useContext(AuthContext);
-  const [followed, setFollowed] = useState(currentUser.followings.includes(user?.id));
+  // const { user: currentUser, dispatch } = useContext(AuthContext);
+  // const [followed, setFollowed] = useState(currentUser.followings.includes(user?.id));
 
-  useEffect(() => {
-    const getFriends = async () => {
-      try {
-        const friendList = await axios.get('/users/friends/' + user._id);
-        console.log(user._id);
-        setFriends(friendList.data);
-        console.log(friendList);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getFriends();
-  }, [user]);
+  // useEffect(() => {
+  //   const getFriends = async () => {
+  //     try {
+  //       const friendList = await axios.get('/users/friends/' + user._id);
+  //       console.log(user._id);
+  //       setFriends(friendList.data);
+  //       console.log(friendList);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   getFriends();
+  // }, [user]);
 
-  const handleClick = async () => {
-    try {
-      if (followed) {
-        await axios.put(`/users/${user._id}/unfollow`, {
-          userId: currentUser._id,
-        });
-        dispatch({ type: 'UNFOLLOW', payload: user._id });
-      } else {
-        await axios.put(`/users/${user._id}/follow`, {
-          userId: currentUser._id,
-        });
-        dispatch({ type: 'FOLLOW', payload: user._id });
-      }
-      setFollowed(!followed);
-    } catch (err) {}
-  };
+  // const handleClick = async () => {
+  //   try {
+  //     if (followed) {
+  //       await axios.put(`/users/${user._id}/unfollow`, {
+  //         userId: currentUser._id,
+  //       });
+  //       dispatch({ type: 'UNFOLLOW', payload: user._id });
+  //     } else {
+  //       await axios.put(`/users/${user._id}/follow`, {
+  //         userId: currentUser._id,
+  //       });
+  //       dispatch({ type: 'FOLLOW', payload: user._id });
+  //     }
+  //     setFollowed(!followed);
+  //   } catch (err) {}
+  // };
 
   const HomeRightbar = () => {
     return (
@@ -69,12 +67,12 @@ export default function Rightbar({ user }) {
   const ProfileRightbar = () => {
     return (
       <>
-        {user.username !== currentUser.username && (
+        {/* {user.username !== currentUser.username && (
           <button className="rightbarFollowButton" onClick={handleClick}>
             {followed ? 'Unfollow' : 'Follow'}
             {followed ? <FaBeer /> : <FaBeer />}
           </button>
-        )}
+        )} */}
         <h4 className="rightbarTitle">User information</h4>
         <div className="rightbarInfo">
           <div className="rightbarInfoItem">
