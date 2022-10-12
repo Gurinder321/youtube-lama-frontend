@@ -1,7 +1,5 @@
 import './post.css';
-
 import { FaBeer } from 'react-icons/fa';
-
 import { Users } from '../../dummyData';
 import { useState } from 'react';
 
@@ -38,18 +36,8 @@ export default function Post({ post }) {
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <img
-              className="likeIcon"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjDIkgeIytr0o8C4TfU4aZZ0pzueocelooB718NlA&s"
-              onClick={likeHandler}
-              alt=""
-            />
-            <img
-              className="likeIcon"
-              src="https://cdn-icons-png.flaticon.com/512/105/105220.png"
-              onClick={likeHandler}
-              alt=""
-            />
+            <img className="likeIcon" src="assets/like.png" onClick={likeHandler} alt="" />
+            <img className="likeIcon" src="assets/heart.png" onClick={likeHandler} alt="" />
             <span className="postLikeCounter">{like} people like it</span>
           </div>
           <div className="postBottomRight">

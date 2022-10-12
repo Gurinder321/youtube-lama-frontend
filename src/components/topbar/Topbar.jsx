@@ -2,8 +2,11 @@ import './topbar.css';
 
 import { FaBeer } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
 export default function Topbar() {
+  const { user } = useContext(AuthContext);
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -36,7 +39,15 @@ export default function Topbar() {
             <span className="topbarIconBadge">1</span>
           </div>
         </div>
-        <img src="/assets/person/1.jpeg" alt="" className="topbarImg" />
+        <Link to={`/profile/${user.username}`}>
+          {/* FIXME: NOT WORKING */}
+          {/* <img
+          src={`https://localhost:3000/assets/${user.profilePicture} ? https://localhost:3000/assets/${user.profilePicture} ? https://localhost:3000/assets/${user.profilePicture} : https://localhost:3000/assets/person/noAvatar.png  `}
+          alt=""
+          className="topbarImg"
+        /> */}
+          <p>hello, {user.username}</p>
+        </Link>
       </div>
     </div>
   );
