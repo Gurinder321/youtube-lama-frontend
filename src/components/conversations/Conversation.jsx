@@ -8,11 +8,13 @@ export default function Conversation({ conversation, currentUser }) {
 
   useEffect(() => {
     const friendId = conversation.members.find((m) => m !== currentUser._id);
-    console.log('friend id', friendId);
 
     const getUser = async () => {
       try {
-        const res = await axios('/users?userId=' + friendId);
+        // const res = await axios('/users?userId=' + friendId);
+        // const res = await axios('/users/userId=' + friendId);
+        const res = await axios('/users/' + friendId);
+        setUser(res.data);
         console.log(res);
       } catch (err) {
         console.log(err);
@@ -21,19 +23,16 @@ export default function Conversation({ conversation, currentUser }) {
     getUser();
   }, [currentUser, conversation]);
 
-  console.log('current user', currentUser);
-
-  // const friendId = conversation.members.find((m) => m !== currentUser._id);
-  console.log('current user', currentUser);
-
   return (
     <div className="conversation">
+      {/* FIXME: image not working */}
       <img
         className="conversationImg"
         src={user?.profilePicture ? PF + user.profilePicture : PF + 'person/noAvatar.png'}
         alt=""
       />
       <span className="conversationName">{user?.username}</span>
+      {/* <span className="conversationName">eric</span> */}
     </div>
   );
 }
