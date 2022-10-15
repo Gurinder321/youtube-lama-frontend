@@ -17,7 +17,7 @@ export default function Conversation({ conversation, currentUser }) {
         const res = await axios('/users/' + friendId);
         setUser(res.data);
         // username showing up 21 times
-        console.log(res.data);
+        // console.log(res.data);
       } catch (err) {
         console.log(err);
       }
